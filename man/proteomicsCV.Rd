@@ -1,16 +1,19 @@
 \name{proteomicsCV}
-\alias{logCV}
+\alias{protLogCV}
+\alias{protCV}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
-logCV
+protLogCV
+protCV
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 Calculates the percentage CV for intensity based proteomic data.
 }
 \usage{
-logCV(data, log_transformed)
+protLogCV(data, log_transformed)
+protCV(data)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -58,10 +61,14 @@ intensity_df<-data.frame(intensity1=c(23.88,23.55,23.41,23.15),
                          intensity2=c(23.98,23.56,23.43,23.29),
                          intensity3=c(23.94,23.635,23.37,23.21),
                          intensity4=c(23.81,23.57,23.54,23.08))
-cvs<-logCV(intensity_df, "yes")
 
+# log formula with the data already transformed to natural log
+cvs<-protLogCV(intensity_df, "yes")
+# log formula with the data not log transformed
 not_log_intensity_df<-exp(1)^intensity_df
-cvs<-logCV(not_log_intensity_df,"no")
+cvs<-protLogCV(not_log_intensity_df,"no")
+# base formula with raw intensity (no log transformation)
+raw_cvs<-protCV(not_log_intensity_df)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
