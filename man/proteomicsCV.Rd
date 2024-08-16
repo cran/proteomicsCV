@@ -12,19 +12,20 @@ protCV
 Calculates the percentage CV for intensity based proteomic data.
 }
 \usage{
-protLogCV(data, log_transformed)
+protLogCV(logData, base)
 protCV(data)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
-%%     ~~Describe \code{x} here~~
-input dataframe of the intensity values. These should be normalised already for optimal results.
-}
-\item{log_transformed}{
-'no' for data that has not been log transformed.
-'yes' for natural log transformed data. (log() function in R)
-}
+    input dataframe of the intensity values.
+  }
+  \item{logData}{
+    input dataframe of the log transformed intensity values.
+  }
+  \item{base}{
+    numerical base of the logarithm that was used to transform the data. Values that are accepted are 2 (for log2) and 10 (for log10)
+  }
 }
 %-\details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -57,16 +58,18 @@ Alejandro J. Brenes
 \examples{
 
 library(proteomicsCV)
-intensity_df<-data.frame(intensity1=c(23.88,23.55,23.41,23.15),
-                         intensity2=c(23.98,23.56,23.43,23.29),
-                         intensity3=c(23.94,23.635,23.37,23.21),
-                         intensity4=c(23.81,23.57,23.54,23.08))
+log_intensity_df<-data.frame(intensity1=c(16.93157,26.57542,19.90749,18.86056),
+                         intensity2=c(17.16546,27.77706,19.45854,19.60721),
+                         intensity3=c(17.04260,27.21697,19.70314,16.19530),
+                         intensity4=c(17.08473,26.99766,17.93342,17.97693))
 
-# log formula with the data already transformed to natural log
-cvs<-protLogCV(intensity_df, "yes")
+# log formula with the data already transformed to log2
+cvs<-protLogCV(log_intensity_df, 2)
 # log formula with the data not log transformed
-not_log_intensity_df<-exp(1)^intensity_df
-cvs<-protLogCV(not_log_intensity_df,"no")
+not_log_intensity_df<-data.frame(intensity1=c(125000,100000000,983450,475987),
+                         intensity2=c(147000,230000000,720450,798656),
+                         intensity3=c(135000,156000000,853566,75036),
+                         intensity4=c(139000,134000000,250321,257986))
 # base formula with raw intensity (no log transformation)
 raw_cvs<-protCV(not_log_intensity_df)
 
