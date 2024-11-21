@@ -10,5 +10,5 @@ protLogCV<-function(logData, base){
 
 #' @export
 protCV<-function(data){
-    cv=apply(data, 1, function(x) sd(x)/mean(x))*100
+    cv=apply(data, 1, function(x) sd(x, na.rm = TRUE)/mean(x, na.rm = TRUE))*100
 }

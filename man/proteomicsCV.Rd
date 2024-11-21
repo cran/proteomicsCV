@@ -36,11 +36,12 @@ protCV(data)
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
-returns a list of percentage CVs
+returns a list containing the percentage CVs
 }
-%-\references{
+\references{
 %% ~put references to the literature/web site here ~
-%-}
+https://www.biorxiv.org/content/10.1101/2024.09.11.612398v1
+}
 \author{
 %%  ~~who you are~~
 Alejandro J. Brenes
